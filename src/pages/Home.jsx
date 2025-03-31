@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Search, Code, Database, Server, Globe, BookOpen, Heart, Share2, MessageSquare, Clock, User, Menu, X } from 'lucide-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Code, Database, Server, Globe, Heart, Share2, MessageSquare, Clock, User, BookOpen } from 'lucide-react';
+import Navbar from '../components/Navbar';
 
 const LandingPage = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   // Featured articles data
   const featuredArticles = [
     {
@@ -16,7 +16,8 @@ const LandingPage = () => {
       likes: 342,
       comments: 48,
       category: "Backend",
-      image: "/api/placeholder/800/500"
+      image: "/api/placeholder/800/500",
+      tags: ["express", "mongodb", "api"]
     },
     {
       id: 2,
@@ -28,7 +29,8 @@ const LandingPage = () => {
       likes: 287,
       comments: 36,
       category: "Frontend",
-      image: "/api/placeholder/800/500"
+      image: "/api/placeholder/800/500",
+      tags: ["react", "hooks", "javascript"]
     },
     {
       id: 3,
@@ -40,7 +42,8 @@ const LandingPage = () => {
       likes: 215,
       comments: 29,
       category: "Database",
-      image: "/api/placeholder/800/500"
+      image: "/api/placeholder/800/500",
+      tags: ["mongodb", "performance", "database"]
     }
   ];
 
@@ -53,7 +56,8 @@ const LandingPage = () => {
       author: "Alex Turner",
       date: "March 20, 2025",
       readTime: "10 min read",
-      category: "Security"
+      category: "Security",
+      tags: ["jwt", "authentication", "security"]
     },
     {
       id: 5,
@@ -62,7 +66,8 @@ const LandingPage = () => {
       author: "Emma Wilson",
       date: "March 18, 2025",
       readTime: "8 min read",
-      category: "Frontend"
+      category: "Frontend",
+      tags: ["react", "context-api", "state-management"]
     },
     {
       id: 6,
@@ -71,7 +76,8 @@ const LandingPage = () => {
       author: "James Lee",
       date: "March 15, 2025",
       readTime: "14 min read",
-      category: "Backend"
+      category: "Backend",
+      tags: ["socket.io", "nodejs", "real-time"]
     },
     {
       id: 7,
@@ -80,7 +86,8 @@ const LandingPage = () => {
       author: "Sophia Garcia",
       date: "March 12, 2025",
       readTime: "9 min read",
-      category: "Database"
+      category: "Database",
+      tags: ["mongodb", "pagination", "database"]
     }
   ];
 
@@ -94,118 +101,26 @@ const LandingPage = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center">
-                <Code className="h-8 w-8 text-indigo-600" />
-                <span className="ml-2 text-xl font-bold text-gray-900">MERNBlog</span>
-              </div>
-              <div className="hidden md:ml-6 md:flex md:space-x-8">
-                <a href="#" className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                  Home
-                </a>
-                <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                  Tutorials
-                </a>
-                <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                  Resources
-                </a>
-                <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                  Community
-                </a>
-              </div>
-            </div>
-            <div className="hidden md:flex items-center">
-              <div className="relative mx-4">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  placeholder="Search articles"
-                  type="search"
-                />
-              </div>
-              <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Sign In
-              </button>
-            </div>
-            <div className="flex md:hidden">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-              >
-                {mobileMenuOpen ? (
-                  <X className="block h-6 w-6" />
-                ) : (
-                  <Menu className="block h-6 w-6" />
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="pt-2 pb-3 space-y-1">
-              <a href="#" className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                Home
-              </a>
-              <a href="#" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                Tutorials
-              </a>
-              <a href="#" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                Resources
-              </a>
-              <a href="#" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                Community
-              </a>
-            </div>
-            <div className="pt-4 pb-3 border-t border-gray-200">
-              <div className="flex items-center px-4">
-                <div className="relative mx-4 w-full">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Search className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Search articles"
-                    type="search"
-                  />
-                </div>
-              </div>
-              <div className="mt-3 px-2">
-                <button className="w-full flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                  Sign In
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <div className="bg-indigo-700 text-white">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-              Level Up Your MERN Stack Skills
+              Explore the World of Technology
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-xl">
-              In-depth tutorials, best practices, and community insights from experienced MERN stack developers.
+              Discover insightful articles, expert opinions, and the latest trends in software development and technology.
             </p>
             <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
               <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
-                <a href="#" className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
-                  Browse Tutorials
-                </a>
-                <a href="#" className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-500 bg-opacity-60 hover:bg-opacity-70 sm:px-8">
-                  Join Community
-                </a>
+                <Link to="/tags" className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
+                  Browse Tags
+                </Link>
+                <Link to="/auth" className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-500 bg-opacity-60 hover:bg-opacity-70 sm:px-8">
+                  Sign In
+                </Link>
               </div>
             </div>
           </div>
@@ -216,66 +131,107 @@ const LandingPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-wrap justify-center gap-4">
           {categories.map((category, index) => (
-            <button 
+            <Link 
               key={index}
+              to={`/tags/${category.name.toLowerCase()}`}
               className={`${category.color} flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all hover:shadow-md`}
             >
               {category.icon}
               <span className="ml-2">{category.name}</span>
-            </button>
+            </Link>
           ))}
         </div>
       </div>
 
       {/* Featured Articles */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Articles</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredArticles.map((article) => (
-            <div key={article.id} className="bg-white rounded-lg overflow-hidden shadow-lg transition-all hover:shadow-xl">
-              <img className="w-full h-48 object-cover" src={article.image} alt={article.title} />
-              <div className="p-6">
-                <div className="flex items-center mb-2">
-                  <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                    article.category === "Frontend" ? "bg-blue-100 text-blue-700" : 
-                    article.category === "Backend" ? "bg-green-100 text-green-700" : 
-                    article.category === "Database" ? "bg-purple-100 text-purple-700" : 
-                    "bg-orange-100 text-orange-700"
-                  }`}>
-                    {article.category}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-3xl font-bold text-gray-900 mb-8">Featured Stories</h2>
+        <div className="space-y-8">
+          {/* Main Featured Article */}
+          <div className="bg-white rounded-xl overflow-hidden shadow-lg transition-all hover:shadow-xl">
+            <div className="md:flex">
+              <div className="md:w-2/3">
+                <img className="w-full h-96 object-cover" src={featuredArticles[0].image} alt={featuredArticles[0].title} />
+              </div>
+              <div className="md:w-1/3 p-8">
+                <div className="flex items-center mb-4">
+                  <span className={`px-3 py-1 text-sm font-semibold rounded-full ${featuredArticles[0].category === "Frontend" ? "bg-blue-100 text-blue-700" : featuredArticles[0].category === "Backend" ? "bg-green-100 text-green-700" : featuredArticles[0].category === "Database" ? "bg-purple-100 text-purple-700" : "bg-orange-100 text-orange-700"}`}>
+                    {featuredArticles[0].category}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{article.title}</h3>
-                <p className="text-gray-600 mb-4">{article.excerpt}</p>
-                <div className="flex items-center justify-between text-sm text-gray-500">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{featuredArticles[0].title}</h3>
+                <p className="text-gray-600 mb-6">{featuredArticles[0].excerpt}</p>
+                <div className="flex items-center justify-between text-sm text-gray-500 mb-6">
                   <div className="flex items-center">
-                    <User size={16} className="mr-1" />
-                    <span>{article.author}</span>
+                    <User size={16} className="mr-2" />
+                    <span>{featuredArticles[0].author}</span>
                   </div>
                   <div className="flex items-center">
-                    <Clock size={16} className="mr-1" />
-                    <span>{article.readTime}</span>
+                    <Clock size={16} className="mr-2" />
+                    <span>{featuredArticles[0].readTime}</span>
                   </div>
                 </div>
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
-                  <div className="flex space-x-4">
-                    <button className="flex items-center text-gray-500 hover:text-indigo-600">
-                      <Heart size={16} className="mr-1" />
-                      <span>{article.likes}</span>
-                    </button>
-                    <button className="flex items-center text-gray-500 hover:text-indigo-600">
-                      <MessageSquare size={16} className="mr-1" />
-                      <span>{article.comments}</span>
-                    </button>
-                  </div>
-                  <button className="flex items-center text-gray-500 hover:text-indigo-600">
-                    <Share2 size={16} className="mr-1" />
-                    <span>Share</span>
-                  </button>
-                </div>
+                <Link to={`/blog/${featuredArticles[0].id}`} className="block w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors text-center">
+                  Read More
+                </Link>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Other Featured Articles */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {featuredArticles.slice(1).map((article) => (
+              <div key={article.id} className="bg-white rounded-lg overflow-hidden shadow-md transition-all hover:shadow-lg flex">
+                <div className="w-1/3">
+                  <img className="w-full h-full object-cover" src={article.image} alt={article.title} />
+                </div>
+                <div className="w-2/3 p-6">
+                  <div className="flex items-center mb-2">
+                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${article.category === "Frontend" ? "bg-blue-100 text-blue-700" : article.category === "Backend" ? "bg-green-100 text-green-700" : article.category === "Database" ? "bg-purple-100 text-purple-700" : "bg-orange-100 text-orange-700"}`}>
+                      {article.category}
+                    </span>
+                  </div>
+                  <Link to={`/blog/${article.id}`}>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 hover:text-indigo-600">{article.title}</h3>
+                  </Link>
+                  <p className="text-sm text-gray-600 mb-4">{article.excerpt}</p>
+                  <div className="flex items-center justify-between text-sm text-gray-500">
+                    <div className="flex items-center">
+                      <User size={16} className="mr-1" />
+                      <span>{article.author}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Clock size={16} className="mr-1" />
+                      <span>{article.readTime}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+                    <div className="flex space-x-4">
+                      <button className="flex items-center text-gray-500 hover:text-indigo-600">
+                        <Heart size={16} className="mr-1" />
+                        <span>{article.likes}</span>
+                      </button>
+                      <button className="flex items-center text-gray-500 hover:text-indigo-600">
+                        <MessageSquare size={16} className="mr-1" />
+                        <span>{article.comments}</span>
+                      </button>
+                    </div>
+                    <div className="flex space-x-2">
+                      {article.tags.map((tag, index) => (
+                        <Link
+                          key={index}
+                          to={`/tags/${tag}`}
+                          className="text-xs text-indigo-600 hover:text-indigo-800"
+                        >
+                          #{tag}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -287,17 +243,13 @@ const LandingPage = () => {
             <div key={post.id} className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-all flex flex-col md:flex-row gap-4">
               <div className="flex-1">
                 <div className="flex items-center mb-2">
-                  <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                    post.category === "Frontend" ? "bg-blue-100 text-blue-700" : 
-                    post.category === "Backend" ? "bg-green-100 text-green-700" : 
-                    post.category === "Database" ? "bg-purple-100 text-purple-700" : 
-                    post.category === "Security" ? "bg-red-100 text-red-700" :
-                    "bg-orange-100 text-orange-700"
-                  }`}>
+                  <span className={`px-2 py-1 text-xs font-semibold rounded-full ${post.category === "Frontend" ? "bg-blue-100 text-blue-700" : post.category === "Backend" ? "bg-green-100 text-green-700" : post.category === "Database" ? "bg-purple-100 text-purple-700" : post.category === "Security" ? "bg-red-100 text-red-700" : "bg-orange-100 text-orange-700"}`}>
                     {post.category}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{post.title}</h3>
+                <Link to={`/blog/${post.id}`}>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 hover:text-indigo-600">{post.title}</h3>
+                </Link>
                 <p className="text-gray-600 text-sm mb-3">{post.excerpt}</p>
                 <div className="flex items-center justify-between text-xs text-gray-500">
                   <div className="flex items-center">
@@ -309,14 +261,25 @@ const LandingPage = () => {
                     <span>{post.readTime}</span>
                   </div>
                 </div>
+                <div className="flex space-x-2 mt-3">
+                  {post.tags.map((tag, index) => (
+                    <Link
+                      key={index}
+                      to={`/tags/${tag}`}
+                      className="text-xs text-indigo-600 hover:text-indigo-800"
+                    >
+                      #{tag}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
         </div>
         <div className="mt-8 text-center">
-          <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <Link to="/tags" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             View All Articles
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -349,74 +312,18 @@ const LandingPage = () => {
                     <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
                       <button
                         type="submit"
-                        className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white"
                       >
                         Subscribe
                       </button>
                     </div>
                   </form>
-                  <p className="mt-3 text-sm text-indigo-200">
-                    We care about your data. Read our <a href="#" className="font-medium text-white underline">privacy policy</a>.
-                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-white">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Resources</h3>
-              <ul className="mt-4 space-y-4">
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Documentation</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Guides</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">API References</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Best Practices</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Community</h3>
-              <ul className="mt-4 space-y-4">
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Forums</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Events</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Discord</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">GitHub</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
-              <ul className="mt-4 space-y-4">
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">About</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Blog</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Careers</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
-              <ul className="mt-4 space-y-4">
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Privacy</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Terms</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">Cookies</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-gray-900">License</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-12 border-t border-gray-200 pt-8">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center">
-                <Code className="h-8 w-8 text-indigo-600" />
-                <span className="ml-2 text-xl font-bold text-gray-900">MERNBlog</span>
-              </div>
-              <p className="text-base text-gray-400">&copy; 2025 MERNBlog. All rights reserved.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
